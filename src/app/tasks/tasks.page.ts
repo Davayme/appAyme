@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController, ToastController } from '@ionic/angular';
+import { AddTaskTeacherComponent } from './add-task-teacher/add-task-teacher.component';
 import { Tasks } from '../models/ITasks';
 
 @Component({
@@ -10,7 +12,7 @@ export class TasksPage implements OnInit {
   tasks: Tasks[] = [];
   role: string | null = '';
 
-  constructor() {}
+  constructor(private modalController: ModalController, private toastController: ToastController) {}
 
   ngOnInit() {
     this.simulateStudentLogin();
@@ -35,5 +37,29 @@ export class TasksPage implements OnInit {
     } else if (this.role === 'teacher') {
       this.tasks = allTasks;
     }
+  }
+
+  async openAddTaskModal() {
+    const modal = await this.modalController.create({
+      component: AddTaskTeacherComponent,
+    });
+
+    modal.onDidDismiss().then((result) => {
+      if (result.data) {
+        this.tasks.push(result.data);
+        this.presentToast('Tarea agregada correctamente');
+      }
+    });
+
+    return await modal.present();
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      position: 'bottom',
+    });
+    toast.present();
   }
 }

@@ -28,7 +28,7 @@
 
   <!-- Botón de agregar tarea solo visible para profesores -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="role === 'teacher'">
-    <ion-fab-button color="primary">
+    <ion-fab-button color="primary" (click)="openAddTaskModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
