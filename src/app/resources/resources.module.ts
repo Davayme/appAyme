@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ResourcesPageRoutingModule } from './resources-routing.module';
 
 import { ResourcesPage } from './resources.page';
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { ResourcesPage } from './resources.page';
     FormsModule,
     IonicModule,
     ResourcesPageRoutingModule,
-  ],
+    SharedModule
+],
   declarations: [ResourcesPage]
 })
 export class ResourcesPageModule {}

@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { EnrollmentPageRoutingModule } from './enrollment-routing.module';
 
 import { EnrollmentPage } from './enrollment.page';
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EnrollmentPageRoutingModule
-  ],
+    EnrollmentPageRoutingModule,
+    SharedModule
+],
   declarations: [EnrollmentPage]
 })
 export class EnrollmentPageModule {}

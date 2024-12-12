@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://10.80.3.15:3000',
+  baseUrl: 'https://backend-grades-system.onrender.com',
   firebaseConfig: {
     apiKey: 'AIzaSyBuFdEf200mkAAWTcql9opeiaZCAyXGVQg',
     authDomain: 'apptestayme.firebaseapp.com',

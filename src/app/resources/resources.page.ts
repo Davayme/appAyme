@@ -65,4 +65,15 @@ export class ResourcesPage implements OnInit {
     this.newResource = { id: 0, materia_id: 0, nombre: '' };
     this.closeModal();
   }
+
+  async downloadResource(resource: Resource) {
+    // Aquí iría la lógica de descarga (por ejemplo, generar un enlace de descarga o hacer una petición para obtener el archivo)
+
+    const toast = await this.toastController.create({
+      message: 'Recurso descargado.',
+      duration: 2000,
+      position: 'bottom',
+    });
+    await toast.present();
+  }
 }
