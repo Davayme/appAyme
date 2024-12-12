@@ -1,0 +1,7 @@
+{
+  "name": "appAyme",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
