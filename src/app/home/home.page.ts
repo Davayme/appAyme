@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FirebaseService } from '../services/firebase.service';
+import { User } from '../models/IUser';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  user: User = { email: '', password: '' };
 
-  constructor() {}
+  constructor(private firebaseService: FirebaseService) {}
 
+  async login() {
+    try {
+      const userCredential = await this.firebaseService.signIn(this.user);
+      console.log('Usuario logeado:', userCredential.user);
+      await this.firebaseService.saveUserEmail(this.user.email);
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+    }
+  }
 }
