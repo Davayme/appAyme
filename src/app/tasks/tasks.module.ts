@@ -9,6 +9,7 @@ import { TasksPageRoutingModule } from './tasks-routing.module';
 import { TasksPage } from './tasks.page';
 import { AddTaskTeacherComponent } from './add-task-teacher/add-task-teacher.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from "../shared/shared.module";
 
 
 @NgModule({
@@ -19,10 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     TasksPageRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
-    
-
-  ],
+    HttpClientModule,
+    SharedModule
+],
   declarations: [TasksPage, AddTaskTeacherComponent]
 })
 export class TasksPageModule {}
