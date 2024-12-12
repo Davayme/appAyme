@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Tu matrícula</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Matrícula Finalizada</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Card principal que ocupa más espacio -->
+  <ion-card class="matricula-card">
+    <ion-card-header>
+      <ion-card-title>Tu matrícula está finalizada</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        ¡Felicidades! Has completado el proceso de matrícula con éxito. Ahora puedes acceder a tus cursos en cualquier momento desde tu panel de usuario.
+      </p>
+      <!-- Botón que redirige a /home -->
+      <ion-button expand="full" color="success" [routerLink]="['/home']">Volver</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

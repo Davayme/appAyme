@@ -1,0 +1,25 @@
+.matricula-card {
+    max-width: 600px;  /* Limita el tamaño máximo para que no se expanda demasiado */
+    margin: 20px auto; /* Centra la tarjeta y le da márgenes alrededor */
+    padding: 30px;  /* Espaciado interno para que el contenido no esté pegado al borde */
+    background-color: #f4f4f4;  /* Fondo ligeramente gris para dar contraste */
+    border-radius: 12px;  /* Bordes redondeados para un aspecto más suave */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    color: black; /* Sombra para hacer la tarjeta más destacada */
+  }
+  
+  .matricula-card ion-card-header {
+    text-align: center;  /* Centra el título de la tarjeta */
+    font-size: 24px;  /* Aumenta el tamaño de la fuente del título */
+    color: black;  
+}
+  
+  .matricula-card ion-card-title {
+    font-weight: bold;  /* Resalta el título con negrita */
+    color: black;  
+}
+  
+  .matricula-card ion-button {
+    margin-top: 20px;  /* Espacio entre el contenido y el botón */
+  }
+  

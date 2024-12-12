@@ -26,9 +26,14 @@ const routes: Routes = [
     loadChildren: () => import('./tasks/tasks.module').then( m => m.TasksPageModule)
   },
   {
+    path: 'enrollment',
+    loadChildren: () => import('./enrollment/enrollment.module').then( m => m.EnrollmentPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'login',
   },
+  
 ];
 
 @NgModule({
