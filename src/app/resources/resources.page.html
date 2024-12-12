@@ -7,29 +7,62 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tareas</ion-title>
+      <ion-title size="large">Recursos</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Curso de Programación</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Descripción del curso de programación.</p>
-      <ion-button expand="full">Ver Curso</ion-button>
-    </ion-card-content>
-  </ion-card>
+  <ion-list>
+    <!-- Lista de recursos -->
+    <ion-item *ngFor="let resource of resources">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ resource.nombre }}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-item>
+  </ion-list>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Curso de Diseño</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Descripción del curso de diseño.</p>
-      <ion-button expand="full">Ver Curso</ion-button>
-    </ion-card-content>
-  </ion-card>
+  <!-- Botón flotante para agregar recurso -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="openModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-  <!-- Agrega más tarjetas según sea necesario -->
+  <!-- Modal -->
+  <div *ngIf="showModal" class="modal-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Agregar Recurso</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Nombre del Recurso</ion-label>
+          <ion-input [(ngModel)]="newResource.nombre"></ion-input>
+        </ion-item>
+        <ion-button expand="full" (click)="uploadResource()">Subir</ion-button>
+        <ion-button expand="full" color="light" (click)="closeModal()">Cancelar</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
+
+<style>
+  .modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .modal-container ion-card {
+    width: 90%;
+    max-width: 400px;
+  }
+</style>
