@@ -7,7 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { TasksPageRoutingModule } from './tasks-routing.module';
 
 import { TasksPage } from './tasks.page';
-import { ListTasksComponent } from './list-tasks/list-tasks.component';
+import { AddTaskTeacherComponent } from './add-task-teacher/add-task-teacher.component';
+
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { ListTasksComponent } from './list-tasks/list-tasks.component';
     TasksPageRoutingModule,
 
   ],
-  declarations: [TasksPage, ListTasksComponent]
+  declarations: [TasksPage, AddTaskTeacherComponent]
 })
 export class TasksPageModule {}
