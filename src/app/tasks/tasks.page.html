@@ -11,25 +11,25 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Curso de Programación</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Descripción del curso de programación.</p>
-      <ion-button expand="full">Ver Curso</ion-button>
-    </ion-card-content>
-  </ion-card>
+  <ion-list>
+    <ion-item *ngFor="let task of tasks" class="task-item">
+      <ion-card class="task-card">
+        <ion-card-header>
+          <ion-card-title>{{ task.nombre }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Nota: {{ task.nota }}</p>
+          <p>Observación: {{ task.observacion }}</p>
+          <ion-button expand="full">Ver Tarea</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Curso de Diseño</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Descripción del curso de diseño.</p>
-      <ion-button expand="full">Ver Curso</ion-button>
-    </ion-card-content>
-  </ion-card>
-
-  <!-- Agrega más tarjetas según sea necesario -->
+  <!-- Botón de agregar tarea solo visible para profesores -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="role === 'teacher'">
+    <ion-fab-button color="primary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
