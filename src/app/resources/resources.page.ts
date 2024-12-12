@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
-
-export interface Resource {
-  id: number;
-  materia_id: number;
-  nombre: string;
-}
+import { ActivatedRoute } from '@angular/router';
+import { ResourceService } from './services/resources.service'; // Asegúrate de importar el servicio
+import { Resource } from './models/resource.interface';
 
 @Component({
   selector: 'app-resources',
@@ -17,27 +14,36 @@ export class ResourcesPage implements OnInit {
   showModal: boolean = false; // Controla la visibilidad del modal
   newResource: Resource = { id: 0, materia_id: 0, nombre: '' }; // Nuevo recurso
 
-  constructor(private toastController: ToastController) {}
+  constructor(
+    private toastController: ToastController,
+    private resourceService: ResourceService, // Inyectar el servicio
+    private route: ActivatedRoute // Para acceder al parámetro de la URL
+  ) {}
 
   ngOnInit() {
-    this.loadResources();
+    // Obtener el courseId de la URL y cargar los recursos
+    const courseId = this.route.snapshot.paramMap.get('courseId') as string;
+    this.loadResources(courseId);
   }
 
-  // Cargar recursos desde localStorage
-  loadResources() {
-    const storedResources = localStorage.getItem('resources');
-    this.resources = storedResources ? JSON.parse(storedResources) : [];
+  // Cargar recursos desde la API
+  loadResources(courseId: string) {
+    this.resourceService.getResources(courseId).subscribe({
+      next: (data) => {
+        this.resources = data; // Asignar los recursos a la variable
+      },
+      error: (err) => {
+        console.error('Error al obtener recursos', err);
+      },
+    });
   }
 
-  // Guardar recursos en localStorage
-  saveResources() {
-    localStorage.setItem('resources', JSON.stringify(this.resources));
-  }
-
+  // Abrir modal para agregar recurso
   openModal() {
     this.showModal = true;
   }
 
+  // Cerrar modal
   closeModal() {
     this.showModal = false;
   }
@@ -47,18 +53,8 @@ export class ResourcesPage implements OnInit {
       return;
     }
 
-    // Agregar nuevo recurso a la lista
-    const newId =
-      this.resources.length > 0
-        ? this.resources[this.resources.length - 1].id + 1
-        : 1;
-    const newResource = { ...this.newResource, id: newId, materia_id: 1 };
-    this.resources.push(newResource);
+    // Lógica para agregar un nuevo recurso, si fuera necesario
 
-    // Guardar en localStorage
-    this.saveResources();
-
-    // Mostrar notificación
     const toast = await this.toastController.create({
       message: 'Recurso subido.',
       duration: 2000,
@@ -66,7 +62,6 @@ export class ResourcesPage implements OnInit {
     });
     await toast.present();
 
-    // Resetea el formulario y cierra el modal
     this.newResource = { id: 0, materia_id: 0, nombre: '' };
     this.closeModal();
   }
