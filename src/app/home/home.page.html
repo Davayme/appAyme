@@ -1,1 +1,19 @@
-<h1>Home</h1>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Tareas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor="let course of this.courses">
+    <ion-card-header>
+      <ion-card-title>{{ course.materias.nombre }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Curso {{course.materias.nombre}}</p>
+      <p>Código del Curso: {{course.materia_id}}</p>
+      <ion-button expand="full" color="secondary">Tareas</ion-button>
+      <ion-button expand="full" color="warning">Recursos</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

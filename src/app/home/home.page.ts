@@ -1,24 +1,26 @@
-import { Component, inject } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
-import { User } from '../models/IUser';
+import { Component, inject, OnInit } from '@angular/core';
+import { CourseService } from './services/course.service';
+import { ICourse } from './models/course';
+import { IUser } from '../login/models/user';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-  user: User = { email: '', password: '' };
+export class HomePage implements OnInit {
+  courses: ICourse[] = [];
+  courseSrv = inject(CourseService);
+  teacher: IUser = JSON.parse(localStorage.getItem('user') || '{}');
 
-  firebaseService = inject(FirebaseService);
+  ngOnInit(): void {
+    this.loadCourses();
+  }
 
-  async login() {
-    try {
-      const userCredential = await this.firebaseService.signIn(this.user);
-      console.log('Usuario logeado:', userCredential.user);
-      await this.firebaseService.saveUserEmail(this.user.email);
-    } catch (error) {
-      console.error('Error al iniciar sesión:', error);
-    }
+  loadCourses() {
+    const user: IUser = JSON.parse(localStorage.getItem('user') || '{}');
+    this.courseSrv.getCourses(user.uid).subscribe((response) => {
+      this.courses = response;
+    });
   }
 }
