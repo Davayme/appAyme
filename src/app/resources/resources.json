@@ -1,0 +1,53 @@
+[
+    {
+      "name": "Recurso 1",
+      "date": "2024-01-01",
+      "description": "Descripción breve del recurso 1."
+    },
+    {
+      "name": "Recurso 2",
+      "date": "2024-01-05",
+      "description": "Descripción breve del recurso 2."
+    },
+    {
+      "name": "Recurso 3",
+      "date": "2024-01-10",
+      "description": "Descripción breve del recurso 3."
+    },
+    {
+      "name": "Recurso 4",
+      "date": "2024-01-15",
+      "description": "Descripción breve del recurso 4."
+    },
+    {
+      "name": "Recurso 5",
+      "date": "2024-01-20",
+      "description": "Descripción breve del recurso 5."
+    },
+    {
+      "name": "Recurso 6",
+      "date": "2024-01-25",
+      "description": "Descripción breve del recurso 6."
+    },
+    {
+      "name": "Recurso 7",
+      "date": "2024-02-01",
+      "description": "Descripción breve del recurso 7."
+    },
+    {
+      "name": "Recurso 8",
+      "date": "2024-02-05",
+      "description": "Descripción breve del recurso 8."
+    },
+    {
+      "name": "Recurso 9",
+      "date": "2024-02-10",
+      "description": "Descripción breve del recurso 9."
+    },
+    {
+      "name": "Recurso 10",
+      "date": "2024-02-15",
+      "description": "Descripción breve del recurso 10."
+    }
+  ]
+  
