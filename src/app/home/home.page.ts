@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { User } from '../models/IUser';
 
@@ -10,7 +10,7 @@ import { User } from '../models/IUser';
 export class HomePage {
   user: User = { email: '', password: '' };
 
-  constructor(private firebaseService: FirebaseService) {}
+  firebaseService = inject(FirebaseService);
 
   async login() {
     try {
