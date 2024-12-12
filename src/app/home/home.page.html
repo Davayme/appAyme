@@ -1,24 +1,24 @@
-<app-header title="Materias" />
+<app-header title="Materias"></app-header>
 <ion-content [fullscreen]="true">
-  <ion-card *ngFor="let course of this.courses">
+  <ion-card *ngFor="let course of courses" class="course-card">
     <ion-card-header>
-      <ion-card-title>{{ course.materia }}</ion-card-title>
+      <ion-card-title>
+        <ion-icon name="book" slot="start"></ion-icon>
+        {{ course.materia }}
+      </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <p>Curso {{course.materia}}</p>
-      <p>Código del Curso: {{course.materia_id}}</p>
-      <ion-button
-        expand="full"
-        color="secondary"
-        (click)="this.redirectToCourseTasks(course.materia_id)"
-        >Tareas</ion-button
-      >
-      <ion-button
-        expand="full"
-        color="warning"
-        (click)="this.redirectToCourseResources(course.materia_id)"
-        >Recursos</ion-button
-      >
+      <p><ion-icon name="school"></ion-icon> Curso: {{ course.materia }}</p>
+      <p><ion-icon name="code-working"></ion-icon> Código del Curso: {{ course.materia_id }}</p>
+      <p><ion-icon name="stats-chart"></ion-icon> Promedio: {{ course.promedio }}</p>
+      <ion-button expand="full" color="secondary" (click)="redirectToCourseTasks(course.materia_id)">
+        <ion-icon name="clipboard"></ion-icon>
+        Tareas
+      </ion-button>
+      <ion-button expand="full" color="warning" (click)="redirectToCourseResources(course.materia_id)">
+        <ion-icon name="folder"></ion-icon>
+        Recursos
+      </ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>
