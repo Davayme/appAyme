@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import Push from 'push.js';
 import { AddTaskTeacherComponent } from './add-task-teacher/add-task-teacher.component';
 import { Tasks } from '../models/ITasks';
 
@@ -11,10 +12,11 @@ import { Tasks } from '../models/ITasks';
 export class TasksPage implements OnInit {
   tasks: Tasks[] = [];
 
-  constructor(private modalController: ModalController, private toastController: ToastController) {}
+  constructor(private modalController: ModalController) {}
 
   ngOnInit() {
     this.loadTasks();
+    this.requestNotificationPermission();
   }
 
   loadTasks() {
@@ -34,19 +36,44 @@ export class TasksPage implements OnInit {
 
     modal.onDidDismiss().then((result) => {
       if (result.data) {
-        this.presentToast('Archivo subido exitosamente');
+        this.presentNotification('Archivo subido exitosamente');
       }
     });
 
     return await modal.present();
   }
 
-  async presentToast(message: string) {
-    const toast = await this.toastController.create({
-      message,
-      duration: 2000,
-      position: 'bottom',
+  requestNotificationPermission() {
+    Push.Permission.request(
+      () => {
+        console.log('Permiso de notificación concedido');
+        this.sendReminderNotification();
+      },
+      () => {
+        console.log('Permiso de notificación denegado');
+      }
+    );
+  }
+
+  sendReminderNotification() {
+    Push.create('Recordatorio de Tarea', {
+      body: 'No olvides enviar tu tarea.',
+      icon: '/assets/icon/task-icon.png', // Ruta al icono de la notificación
+      timeout: 10000,
+      onClick: function () {
+        window.focus();
+      }
     });
-    toast.present();
+  }
+
+  presentNotification(message: string) {
+    const notification = Push.create('Notificación', {
+      body: message,
+      timeout: 5000,
+      onClick: function () {
+        window.focus();
+     
+      }
+    });
   }
 }
