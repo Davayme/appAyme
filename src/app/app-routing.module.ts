@@ -8,6 +8,10 @@ const routes: Routes = [
       import('./home/home.module').then((m) => m.HomePageModule),
   },
   {
+    path: 'resources',
+    loadChildren: () => import('./resources/resources.module').then( m => m.ResourcesPageModule)
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
