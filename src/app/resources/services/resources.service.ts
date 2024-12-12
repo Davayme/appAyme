@@ -8,7 +8,7 @@ import { Resource } from '../models/resource.interface'
   providedIn: 'root',
 })
 export class ResourceService {
-  baseUrl = `http://10.80.3.15:3000/resources`;  // La URL base de la API
+  baseUrl = `${environment.baseUrl}/resources`
   httpClient = inject(HttpClient);
 
   // Método para obtener los recursos de un curso dado su courseId

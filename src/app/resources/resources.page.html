@@ -1,8 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Recursos</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="Recursos" backButton="true"></app-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -11,43 +7,36 @@
     </ion-toolbar>
   </ion-header>
 
+  <!-- Lista de recursos obtenidos de la API -->
   <ion-list>
-    <!-- Lista de recursos obtenidos de la API -->
-    <ion-item *ngFor="let resource of resources">
-      <ion-card>
+    <ion-item *ngFor="let resource of resources" lines="none">
+      <ion-card class="custom-card full-width">
         <ion-card-header>
-          <ion-card-title>{{ resource.nombre }}</ion-card-title>
+          <ion-card-title> Nombre del Recurso: {{resource.nombre }}</ion-card-title>
         </ion-card-header>
+        <ion-card-content>
+          <!-- Botón para descargar -->
+          <ion-button expand="full" color="primary" (click)="downloadResource(resource)">
+            Descargar
+          </ion-button>
+        </ion-card-content>
       </ion-card>
     </ion-item>
   </ion-list>
 
-  <!-- Botón flotante para agregar recurso -->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="primary" (click)="openModal()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
-  <!-- Modal -->
-  <div *ngIf="showModal" class="modal-container">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Agregar Recurso</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-item>
-          <ion-label position="floating">Nombre del Recurso</ion-label>
-          <ion-input [(ngModel)]="newResource.nombre"></ion-input>
-        </ion-item>
-        <ion-button expand="full" (click)="uploadResource()">Subir</ion-button>
-        <ion-button expand="full" color="light" (click)="closeModal()">Cancelar</ion-button>
-      </ion-card-content>
-    </ion-card>
-  </div>
 </ion-content>
 
 <style>
+  .full-width {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .custom-card {
+    margin: 0;
+    border-radius: 8px;
+  }
+
   .modal-container {
     position: fixed;
     top: 0;
@@ -56,13 +45,13 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     z-index: 1000;
   }
 
-  .modal-container ion-card {
+  .modal-card {
     width: 90%;
-    max-width: 400px;
+    max-width: 500px;
   }
 </style>
