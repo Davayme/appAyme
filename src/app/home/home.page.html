@@ -12,8 +12,18 @@
     <ion-card-content>
       <p>Curso {{course.materias.nombre}}</p>
       <p>Código del Curso: {{course.materia_id}}</p>
-      <ion-button expand="full" color="secondary">Tareas</ion-button>
-      <ion-button expand="full" color="warning">Recursos</ion-button>
+      <ion-button
+        expand="full"
+        color="secondary"
+        (click)="this.redirectToCourseTasks(course.materia_id)"
+        >Tareas</ion-button
+      >
+      <ion-button
+        expand="full"
+        color="warning"
+        (click)="this.redirectToCourseResources(course.materia_id)"
+        >Recursos</ion-button
+      >
     </ion-card-content>
   </ion-card>
 </ion-content>

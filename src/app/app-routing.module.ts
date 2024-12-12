@@ -8,8 +8,9 @@ const routes: Routes = [
       import('./home/home.module').then((m) => m.HomePageModule),
   },
   {
-    path: 'resources',
-    loadChildren: () => import('./resources/resources.module').then( m => m.ResourcesPageModule)
+    path: 'resources/:courseId',
+    loadChildren: () =>
+      import('./resources/resources.module').then((m) => m.ResourcesPageModule),
   },
   {
     path: '',
@@ -22,18 +23,21 @@ const routes: Routes = [
       import('./login/login.module').then((m) => m.LoginPageModule),
   },
   {
-    path: 'tasks',
-    loadChildren: () => import('./tasks/tasks.module').then( m => m.TasksPageModule)
+    path: 'tasks/:courseId',
+    loadChildren: () =>
+      import('./tasks/tasks.module').then((m) => m.TasksPageModule),
   },
   {
     path: 'enrollment',
-    loadChildren: () => import('./enrollment/enrollment.module').then( m => m.EnrollmentPageModule)
+    loadChildren: () =>
+      import('./enrollment/enrollment.module').then(
+        (m) => m.EnrollmentPageModule
+      ),
   },
   {
     path: '**',
     redirectTo: 'login',
   },
-  
 ];
 
 @NgModule({

@@ -48,7 +48,10 @@ export class ResourcesPage implements OnInit {
     }
 
     // Agregar nuevo recurso a la lista
-    const newId = this.resources.length > 0 ? this.resources[this.resources.length - 1].id + 1 : 1;
+    const newId =
+      this.resources.length > 0
+        ? this.resources[this.resources.length - 1].id + 1
+        : 1;
     const newResource = { ...this.newResource, id: newId, materia_id: 1 };
     this.resources.push(newResource);
 
