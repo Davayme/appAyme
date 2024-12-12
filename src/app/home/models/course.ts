@@ -1,8 +1,5 @@
 export interface ICourse {
+  materia: string;
   materia_id: number;
-  materias: IMateria;
-}
-
-interface IMateria {
-  nombre: string;
+  promedio: number;
 }

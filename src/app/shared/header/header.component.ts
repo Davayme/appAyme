@@ -6,9 +6,9 @@ import { UtilsService } from 'src/app/services/utils.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent  {
+export class HeaderComponent {
   @Input() title!: string;
-  @Input() backButton!:string
+  @Input() backButton!: string;
   @Input() isModal!: boolean;
   @Input() showMenu!: boolean;
 
@@ -17,5 +17,4 @@ export class HeaderComponent  {
   dismissModal() {
     this.utilsSvc.dismisModal();
   }
-
 }

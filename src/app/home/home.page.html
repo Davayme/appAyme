@@ -1,16 +1,11 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Tareas</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-header title="Materias" />
 <ion-content [fullscreen]="true">
   <ion-card *ngFor="let course of this.courses">
     <ion-card-header>
-      <ion-card-title>{{ course.materias.nombre }}</ion-card-title>
+      <ion-card-title>{{ course.materia }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <p>Curso {{course.materias.nombre}}</p>
+      <p>Curso {{course.materia}}</p>
       <p>Código del Curso: {{course.materia_id}}</p>
       <ion-button
         expand="full"

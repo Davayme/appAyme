@@ -22,6 +22,7 @@ export class HomePage implements OnInit {
   loadCourses() {
     const user: IUser = JSON.parse(localStorage.getItem('user') || '{}');
     this.courseSrv.getCourses(user.uid).subscribe((response) => {
+      console.log(response);
       this.courses = response;
     });
   }
