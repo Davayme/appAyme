@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'http://10.80.3.15:3000',
   firebaseConfig: {
     apiKey: 'AIzaSyBuFdEf200mkAAWTcql9opeiaZCAyXGVQg',
     authDomain: 'apptestayme.firebaseapp.com',

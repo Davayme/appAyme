@@ -1,7 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { User } from '../models/IUser';
 import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
+import { UserManagementService } from './services/user-management.service';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +14,17 @@ export class LoginPage {
 
   firebaseService = inject(FirebaseService);
   router = inject(Router);
+  userManagementSrv = inject(UserManagementService);
 
   async login() {
     try {
       const userCredential = await this.firebaseService.signIn(this.user);
 
       if (userCredential) {
+        const { uid, email } = userCredential.user;
+        this.userManagementSrv.getUser({ uid, email }).subscribe((user) => {
+          localStorage.setItem('user', JSON.stringify(user));
+        });
         this.router.navigate(['/home']);
       }
 
