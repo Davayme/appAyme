@@ -10,44 +10,31 @@ import { Tasks } from '../models/ITasks';
 })
 export class TasksPage implements OnInit {
   tasks: Tasks[] = [];
-  role: string | null = '';
 
   constructor(private modalController: ModalController, private toastController: ToastController) {}
 
   ngOnInit() {
-    this.simulateStudentLogin();
-    this.role = localStorage.getItem('role');
     this.loadTasks();
-  }
-
-  simulateStudentLogin() {
-    localStorage.setItem('role', 'teacher');
   }
 
   loadTasks() {
     // Array estático de tareas
-    const allTasks: Tasks[] = [
-      { nombre: 'Tarea 1', nota: 'A', observacion: 'Bien hecho' },
-      { nombre: 'Tarea 2', nota: 'B', observacion: 'Puede mejorar' },
-      { nombre: 'Tarea 3', nota: 'C', observacion: 'Necesita más trabajo' },
+    this.tasks = [
+      { nombre: 'Tarea 1', descripcion: 'Realizar una maqueta', estado: true },
+      { nombre: 'Tarea 2', descripcion: 'Realizar una maqueta', estado: false },
+      { nombre: 'Tarea 3', descripcion: 'Realizar una maqueta', estado: true },
     ];
-
-    if (this.role === 'student') {
-      this.tasks = allTasks.filter(task => task.nombre.includes('1') || task.nombre.includes('2'));
-    } else if (this.role === 'teacher') {
-      this.tasks = allTasks;
-    }
   }
 
-  async openAddTaskModal() {
+  async openAddTaskModal(task: Tasks) {
     const modal = await this.modalController.create({
       component: AddTaskTeacherComponent,
+      componentProps: { task }
     });
 
     modal.onDidDismiss().then((result) => {
       if (result.data) {
-        this.tasks.push(result.data);
-        this.presentToast('Tarea agregada correctamente');
+        this.presentToast('Archivo subido exitosamente');
       }
     });
 

@@ -12,24 +12,39 @@
   </ion-header>
 
   <ion-list>
-    <ion-item *ngFor="let task of tasks" class="task-item">
-      <ion-card class="task-card">
-        <ion-card-header>
-          <ion-card-title>{{ task.nombre }}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <p>Nota: {{ task.nota }}</p>
-          <p>Observación: {{ task.observacion }}</p>
-          <ion-button expand="full">Ver Tarea</ion-button>
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
+    <ion-item-divider color="light">
+      <ion-label>Tareas Activas</ion-label>
+    </ion-item-divider>
+    <ng-container *ngFor="let task of tasks">
+      <ion-item *ngIf="task.estado" [ngClass]="{'task-item': true, 'task-active': task.estado}">
+        <ion-card class="task-card">
+          <ion-card-header>
+            <ion-card-title>{{ task.nombre }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ task.descripcion }}</p>
+            <ion-button expand="full" (click)="openAddTaskModal(task)">Subir Asignación</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ng-container>
+
+    <ion-item-divider color="light">
+      <ion-label>Tareas Atrasadas</ion-label>
+    </ion-item-divider>
+    <ng-container *ngFor="let task of tasks">
+      <ion-item *ngIf="!task.estado" [ngClass]="{'task-item': true, 'task-inactive': !task.estado}">
+        <ion-card class="task-card">
+          <ion-card-header>
+            <ion-card-title>{{ task.nombre }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ task.descripcion }}</p>
+            <ion-button expand="full" color="danger" disabled>Atrasado</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ng-container>
   </ion-list>
 
-  <!-- Botón de agregar tarea solo visible para profesores -->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="role === 'teacher'">
-    <ion-fab-button color="primary" (click)="openAddTaskModal()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>

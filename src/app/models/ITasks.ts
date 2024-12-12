@@ -1,5 +1,5 @@
 export interface Tasks{
     nombre: string;
-    nota : string;
-    observacion: string;
+    descripcion: string;
+    estado: boolean
 }

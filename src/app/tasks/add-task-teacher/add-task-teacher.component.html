@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Agregar Tarea</ion-title>
+    <ion-title>Subir Archivos</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismissModal()">
         <ion-icon name="close"></ion-icon>
@@ -10,31 +10,25 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()" class="upload-form">
     <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input formControlName="nombre"></ion-input>
+      <ion-label position="stacked">Nombre de la Tarea</ion-label>
+      <ion-input formControlName="nombre" readonly></ion-input>
     </ion-item>
-    <ion-note color="danger" *ngIf="taskForm.get('nombre')?.invalid && taskForm.get('nombre')?.touched">
-      El nombre es requerido.
-    </ion-note>
 
     <ion-item>
-      <ion-label position="floating">Nota</ion-label>
-      <ion-input formControlName="nota"></ion-input>
+      <ion-label position="stacked">Subir Archivos</ion-label>
+      <input type="file" (change)="onFileSelected($event)" />
     </ion-item>
-    <ion-note color="danger" *ngIf="taskForm.get('nota')?.invalid && taskForm.get('nota')?.touched">
-      La nota es requerida.
+    <ion-note color="danger" *ngIf="!file && uploadForm.get('file')?.touched">
+      Debe subir un archivo.
     </ion-note>
 
-    <ion-item>
-      <ion-label position="floating">Observación</ion-label>
-      <ion-input formControlName="observacion"></ion-input>
+    <ion-item *ngIf="file">
+      <ion-label>Archivo Subido:</ion-label>
+      <ion-text>{{ file.name }}</ion-text>
     </ion-item>
-    <ion-note color="danger" *ngIf="taskForm.get('observacion')?.invalid && taskForm.get('observacion')?.touched">
-      La observación es requerida.
-    </ion-note>
 
-    <ion-button expand="full" type="submit" [disabled]="taskForm.invalid">Agregar Tarea</ion-button>
+    <ion-button expand="full" type="submit" [disabled]="!file" class="submit-button">Enviar</ion-button>
   </form>
 </ion-content>

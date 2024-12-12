@@ -1,38 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { Tasks } from 'src/app/models/ITasks';
 
 @Component({
   selector: 'app-add-task-teacher',
   templateUrl: './add-task-teacher.component.html',
   styleUrls: ['./add-task-teacher.component.scss'],
 })
-export class AddTaskTeacherComponent  {
+export class AddTaskTeacherComponent implements OnInit {
+  @Input() task!: Tasks;
+  uploadForm!: FormGroup;
+  file: File | null = null;
 
-  taskForm: FormGroup;
+  constructor(private fb: FormBuilder, private modalCtrl: ModalController, private toastController: ToastController) {}
 
-  constructor(private modalController: ModalController, private fb: FormBuilder) {
-    this.taskForm = this.fb.group({
-      nombre: ['', Validators.required],
-      nota: ['', Validators.required],
-      observacion: ['', Validators.required],
+  ngOnInit() {
+    this.uploadForm = this.fb.group({
+      nombre: [{ value: this.task.nombre, disabled: true }, Validators.required],
+      file: [null, Validators.required]
     });
   }
 
-  
-
   dismissModal() {
-    this.modalController.dismiss();
+    this.modalCtrl.dismiss();
   }
 
-  onSubmit() {
-    if (this.taskForm.valid) {
-      // Aquí puedes agregar la lógica para guardar la tarea
-      console.log('Tarea agregada:', this.taskForm.value);
-      this.modalController.dismiss(this.taskForm.value);
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.file = file;
+      this.uploadForm.patchValue({ file: file });
     }
   }
 
-  
+  async onSubmit() {
+    if (this.uploadForm.valid) {
+      // Aquí puedes agregar la lógica para subir el archivo
+      console.log('Archivo subido:', this.file);
+      this.presentToast('Archivo subido exitosamente');
+      this.dismissModal();
+    }
+  }
 
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      position: 'bottom',
+    });
+    toast.present();
+  }
 }
