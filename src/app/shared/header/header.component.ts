@@ -1,4 +1,6 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
@@ -13,8 +15,15 @@ export class HeaderComponent {
   @Input() showMenu!: boolean;
 
   utilsSvc = inject(UtilsService);
+  firebaseSrv = inject(FirebaseService);
+  router = inject(Router);
 
   dismissModal() {
     this.utilsSvc.dismisModal();
+  }
+
+  logout() {
+    this.firebaseSrv.signOut();
+    this.router.navigate(['login']);
   }
 }
