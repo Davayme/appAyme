@@ -16,7 +16,7 @@
       <ion-label>Tareas Activas</ion-label>
     </ion-item-divider>
     <ng-container *ngFor="let task of tasks">
-      <ion-item *ngIf="task.estado" [ngClass]="{'task-item': true, 'task-active': task.estado}">
+      <ion-item *ngIf="task.tarea_estudiantes[0]?.estado" [ngClass]="{'task-item': true, 'task-active': task.tarea_estudiantes[0]?.estado}">
         <ion-card class="task-card">
           <ion-card-header>
             <ion-card-title>{{ task.nombre }}</ion-card-title>
@@ -33,7 +33,7 @@
       <ion-label>Tareas Atrasadas</ion-label>
     </ion-item-divider>
     <ng-container *ngFor="let task of tasks">
-      <ion-item *ngIf="!task.estado" [ngClass]="{'task-item': true, 'task-inactive': !task.estado}">
+      <ion-item *ngIf="!task.tarea_estudiantes[0]?.estado" [ngClass]="{'task-item': true, 'task-inactive': !task.tarea_estudiantes[0]?.estado}">
         <ion-card class="task-card">
           <ion-card-header>
             <ion-card-title>{{ task.nombre }}</ion-card-title>

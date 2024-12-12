@@ -8,6 +8,7 @@ import { TasksPageRoutingModule } from './tasks-routing.module';
 
 import { TasksPage } from './tasks.page';
 import { AddTaskTeacherComponent } from './add-task-teacher/add-task-teacher.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { AddTaskTeacherComponent } from './add-task-teacher/add-task-teacher.com
     IonicModule,
     TasksPageRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
+    
 
   ],
   declarations: [TasksPage, AddTaskTeacherComponent]
