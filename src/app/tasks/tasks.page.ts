@@ -51,9 +51,9 @@ export class TasksPage implements OnInit {
   sendTaskNotifications() {
     this.tasks.forEach(task => {
       if (!task.tarea_estudiantes[0]?.estado) {
-        this.sendNotification(`Tarea pendiente: ${task.nombre}`, 'Tienes una tarea pendiente.');
-      } else {
         this.sendNotification(`Tarea atrasada: ${task.nombre}`, 'Tienes una tarea atrasada.');
+      } else {
+        this.sendNotification(`Tarea pendiente: ${task.nombre}`, 'Tienes una tarea pendiente.');
       }
     });
   }
