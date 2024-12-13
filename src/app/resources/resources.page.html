@@ -1,57 +1,25 @@
-<app-header title="Recursos" backButton="true"></app-header>
-
+<app-header title="Recursos del Curso" backButton="true"></app-header>
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Recursos</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <!-- Lista de recursos obtenidos de la API -->
-  <ion-list>
-    <ion-item *ngFor="let resource of resources" lines="none">
-      <ion-card class="custom-card full-width">
-        <ion-card-header>
-          <ion-card-title> Nombre del Recurso: {{resource.nombre }}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <!-- Botón para descargar -->
-          <ion-button expand="full" color="primary" (click)="downloadResource(resource)">
-            Descargar
-          </ion-button>
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
-  </ion-list>
-
+  <ion-card *ngFor="let resource of this.resources" class="course-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="book" slot="start"></ion-icon>
+        Recurso: {{ resource.nombre }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        <ion-icon name="code-working"></ion-icon> Código del Curso: {{
+        resource.materia_id }}
+      </p>
+      <ion-button
+        expand="full"
+        color="secondary"
+        (click)="downloadResource(resource)"
+      >
+        <ion-icon name="clipboard"></ion-icon>
+        Descargar Recurso
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
-
-<style>
-  .full-width {
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .custom-card {
-    margin: 0;
-    border-radius: 8px;
-  }
-
-  .modal-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-
-  .modal-card {
-    width: 90%;
-    max-width: 500px;
-  }
-</style>

@@ -1,25 +1,24 @@
 <app-header title="Tareas" backButton="true" />
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tareas</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <ion-list>
     <ion-item-divider color="light">
       <ion-label>Tareas Activas</ion-label>
     </ion-item-divider>
     <ng-container *ngFor="let task of tasks">
-      <ion-item *ngIf="task.tarea_estudiantes[0]?.estado" [ngClass]="{'task-item': true, 'task-active': task.tarea_estudiantes[0]?.estado}">
+      <ion-item
+        *ngIf="task.tarea_estudiantes[0]?.estado"
+        [ngClass]="{'task-item': true, 'task-active': task.tarea_estudiantes[0]?.estado}"
+      >
         <ion-card class="task-card">
           <ion-card-header>
             <ion-card-title>{{ task.nombre }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <p>{{ task.descripcion }}</p>
-            <ion-button expand="full" (click)="openAddTaskModal(task)">Subir Asignación</ion-button>
+            <ion-button expand="full" (click)="openAddTaskModal(task)"
+              >Subir Asignación</ion-button
+            >
           </ion-card-content>
         </ion-card>
       </ion-item>
@@ -29,18 +28,22 @@
       <ion-label>Tareas Atrasadas</ion-label>
     </ion-item-divider>
     <ng-container *ngFor="let task of tasks">
-      <ion-item *ngIf="!task.tarea_estudiantes[0]?.estado" [ngClass]="{'task-item': true, 'task-inactive': !task.tarea_estudiantes[0]?.estado}">
+      <ion-item
+        *ngIf="!task.tarea_estudiantes[0]?.estado"
+        [ngClass]="{'task-item': true, 'task-inactive': !task.tarea_estudiantes[0]?.estado}"
+      >
         <ion-card class="task-card">
           <ion-card-header>
             <ion-card-title>{{ task.nombre }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <p>{{ task.descripcion }}</p>
-            <ion-button expand="full" color="danger" disabled>Atrasado</ion-button>
+            <ion-button expand="full" color="danger" disabled
+              >Atrasado</ion-button
+            >
           </ion-card-content>
         </ion-card>
       </ion-item>
     </ng-container>
   </ion-list>
-
 </ion-content>

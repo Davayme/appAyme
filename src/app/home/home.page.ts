@@ -3,6 +3,7 @@ import { CourseService } from './services/course.service';
 import { ICourse } from './models/course';
 import { IUser } from '../login/models/user';
 import { Router } from '@angular/router';
+import { interval, take, takeWhile } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -12,18 +13,48 @@ import { Router } from '@angular/router';
 export class HomePage implements OnInit {
   courses: ICourse[] = [];
   courseSrv = inject(CourseService);
-  teacher: IUser = JSON.parse(localStorage.getItem('user') || '{}');
+  user: IUser | null = null;
   router = inject(Router);
 
   ngOnInit(): void {
-    this.loadCourses();
+    this.tryReloadUser();
   }
 
-  loadCourses() {
-    const user: IUser = JSON.parse(localStorage.getItem('user') || '{}');
-    this.courseSrv.getCourses(user.uid).subscribe((response) => {
-      console.log(response);
+  tryReloadUser() {
+    interval(100)
+      .pipe(
+        takeWhile(() => !this.user, true),
+        take(20)
+      )
+      .subscribe({
+        next: () => {
+          this.loadUser();
+          if (this.user) {
+            this.loadCourses();
+          }
+        },
+        complete: () => {
+          if (!this.user) {
+            this.router.navigate(['/login']);
+          }
+        },
+      });
+  }
+
+  loadUser(): void {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      this.user = JSON.parse(userData);
+    }
+  }
+
+  async loadCourses() {
+    this.courseSrv.getCourses(this.user!.uid).subscribe((response) => {
       this.courses = response;
+      this.courses.map((course) => {
+        console.log(course);
+      });
+      console.log(this.courses);
     });
   }
 

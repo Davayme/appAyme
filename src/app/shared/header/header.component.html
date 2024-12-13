@@ -1,5 +1,5 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar color="primary">
+  <ion-toolbar color="danger">
     <ion-buttons slot="start">
       <ion-back-button
         *ngIf="backButton"
@@ -9,7 +9,6 @@
       <ion-button (click)="dismissModal()" *ngIf="isModal">
         <ion-icon name="close-circle-outline"></ion-icon>
       </ion-button>
-      <ion-menu-button *ngIf="showMenu" menu="menu-content"></ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="this.logout()">

@@ -1,5 +1,12 @@
 export interface ICourse {
-  materia: string;
+  id: number;
   materia_id: number;
-  promedio: number;
+  estudiante_uid: string;
+  materias: IInternalCourse;
+}
+
+interface IInternalCourse {
+  id: number;
+  nombre: string;
+  profesor_uid: string;
 }
