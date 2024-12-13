@@ -11,10 +11,12 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
+      <ion-button [routerLink]="['/enrollment']">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
       <ion-button (click)="this.logout()">
         <ion-icon name="log-out"></ion-icon>
       </ion-button>
-      <ion-menu-button *ngIf="showMenu" menu="menu-content"></ion-menu-button>
     </ion-buttons>
 
     <ion-title>

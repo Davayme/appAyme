@@ -1,24 +1,69 @@
-<app-header title="Tu Matricula" backButton="true"></app-header>
+<app-header title="Tu Matrícula"></app-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="success-page">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Matrícula Finalizada</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <!-- Card principal que ocupa más espacio -->
-  <ion-card class="matricula-card">
-    <ion-card-header>
-      <ion-card-title>Tu matrícula está finalizada</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>
-        ¡Felicidades! Has completado el proceso de matrícula con éxito. Ahora puedes acceder a tus cursos en cualquier momento desde tu panel de usuario.
-      </p>
-      <!-- Botón que redirige a /home -->
-      <ion-button expand="full" color="success" [routerLink]="['/home']">Volver</ion-button>
-    </ion-card-content>
-  </ion-card>
+  <div class="success-container">
+    <!-- Animated success icon -->
+    <div class="success-icon">
+      <ion-icon name="checkmark-circle" class="animate-success"></ion-icon>
+    </div>
 
+    <!-- Main card with improved styling -->
+    <ion-card class="matricula-card ion-margin">
+      <ion-card-content>
+        <div class="success-message">
+          <h2>¡Felicitaciones! 🎉</h2>
+          <p>Has completado exitosamente el proceso de matrícula.</p>
+        </div>
+
+        <!-- Features grid -->
+        <ion-grid class="features-grid">
+          <ion-row>
+            <ion-col size="6">
+              <div class="feature-item">
+                <ion-icon name="book-outline"></ion-icon>
+                <span>Acceso a Cursos</span>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="feature-item">
+                <ion-icon name="time-outline"></ion-icon>
+                <span>24/7 Disponible</span>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="feature-item">
+                <ion-icon name="people-outline"></ion-icon>
+                <span>Comunidad</span>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="feature-item">
+                <ion-icon name="trophy-outline"></ion-icon>
+                <span>Notas</span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <!-- Action buttons -->
+        <div class="action-buttons">
+          <ion-button
+            expand="block"
+            color="secondary"
+            [routerLink]="['/home']"
+            class="animate-button"
+          >
+            <ion-icon name="home-outline" slot="start"></ion-icon>
+            Ir a mis cursos
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

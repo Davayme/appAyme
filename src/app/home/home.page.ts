@@ -52,9 +52,7 @@ export class HomePage implements OnInit {
     this.courseSrv.getCourses(this.user!.uid).subscribe((response) => {
       this.courses = response;
       this.courses.map((course) => {
-        console.log(course);
       });
-      console.log(this.courses);
     });
   }
 

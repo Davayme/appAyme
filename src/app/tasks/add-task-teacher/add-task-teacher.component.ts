@@ -36,8 +36,6 @@ export class AddTaskTeacherComponent implements OnInit {
 
   async onSubmit() {
     if (this.uploadForm.valid) {
-      // Aquí puedes agregar la lógica para subir el archivo
-      console.log('Archivo subido:', this.file);
       this.presentToast('Archivo subido exitosamente');
       this.dismissModal();
     }

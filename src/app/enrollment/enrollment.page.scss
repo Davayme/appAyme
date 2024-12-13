@@ -1,25 +1,128 @@
-.matricula-card {
-    max-width: 600px;  /* Limita el tamaño máximo para que no se expanda demasiado */
-    margin: 20px auto; /* Centra la tarjeta y le da márgenes alrededor */
-    padding: 30px;  /* Espaciado interno para que el contenido no esté pegado al borde */
-    background-color: #f4f4f4;  /* Fondo ligeramente gris para dar contraste */
-    border-radius: 12px;  /* Bordes redondeados para un aspecto más suave */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    color: black; /* Sombra para hacer la tarjeta más destacada */
+.success-page {
+  --background: var(--ion-color-light);
+
+  .success-container {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 0.5s ease-in-out;
   }
-  
-  .matricula-card ion-card-header {
-    text-align: center;  /* Centra el título de la tarjeta */
-    font-size: 24px;  /* Aumenta el tamaño de la fuente del título */
-    color: black;  
-}
-  
-  .matricula-card ion-card-title {
-    font-weight: bold;  /* Resalta el título con negrita */
-    color: black;  
-}
-  
-  .matricula-card ion-button {
-    margin-top: 20px;  /* Espacio entre el contenido y el botón */
+
+  .success-icon {
+    margin: 0.1rem 0;
+    ion-icon {
+      font-size: 80px;
+      color: var(--ion-color-success);
+    }
   }
+
+  .matricula-card {
+    max-width: 600px;
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    ion-card-header {
+      background: var(--ion-color-light);
+    }
+
+    .title-highlight {
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, var(--ion-color-success), var(--ion-color-primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .success-message {
+    text-align: center;
+    margin-bottom: 0.5rem;
+
+    h2 {
+      color: var(--ion-color-dark);
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+    }
+
+    p {
+      color: var(--ion-color-medium);
+      line-height: 1.6;
+    }
+  }
+
+  .features-grid {
+    margin: 2rem 0;
+
+    .feature-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      text-align: center;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      ion-icon {
+        font-size: 2rem;
+        color: var(--ion-color-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      span {
+        color: var(--ion-color-medium);
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .action-buttons {
+    margin-top: 2rem;
+
+    ion-button {
+      margin: 0.5rem 0;
+      --border-radius: 10px;
+      height: 48px;
+    }
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-success {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-button {
+  transition: transform 0.2s ease-in-out;
   
+  &:hover {
+    transform: translateY(-2px);
+  }
+}

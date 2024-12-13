@@ -1,37 +1,48 @@
-  <app-header title="Materias"></app-header>
-  <ion-content [fullscreen]="true">
-    <ion-card *ngFor="let course of courses" class="course-card">
-      <ion-card-header>
-        <ion-card-title>
-          <ion-icon name="book" slot="start"></ion-icon>
-          {{ course.materias.nombre }}
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>
-          <ion-icon name="school"></ion-icon> Curso: {{ course.materias.nombre }}
-        </p>
-        <p>
-          <ion-icon name="code-working"></ion-icon> Código del Curso: {{
-          course.materia_id }}
-        </p>
-        <p><ion-icon name="stats-chart"></ion-icon> Promedio: {{ 10 }}</p>
-        <ion-button
-          expand="full"
-          color="secondary"
-          (click)="redirectToCourseTasks(course.materia_id)"
-        >
-          <ion-icon name="clipboard"></ion-icon>
-          Tareas
-        </ion-button>
-        <ion-button
-          expand="full"
-          color="warning"
-          (click)="redirectToCourseResources(course.materia_id)"
-        >
-          <ion-icon name="folder"></ion-icon>
-          Recursos
-        </ion-button>
-      </ion-card-content>
-    </ion-card>
-  </ion-content>
+<app-header title="Inicio"></app-header>
+<ion-content [fullscreen]="true">
+  <div
+    style="
+      margin-left: 10px;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+    "
+  >
+    <span>Bienvenido de vuelta! 👋</span>
+    <span style="font-size: small">Este es tu listado de cursos</span>
+  </div>
+  <ion-card *ngFor="let course of courses" class="course-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="book" slot="start"></ion-icon>
+        {{ course.materias.nombre }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        <ion-icon name="school"></ion-icon> Curso: {{ course.materias.nombre }}
+      </p>
+      <p>
+        <ion-icon name="code-working"></ion-icon> Código del Curso: {{
+        course.materia_id }}
+      </p>
+      <p><ion-icon name="stats-chart"></ion-icon> Promedio: {{ 10 }}</p>
+      <ion-button
+        expand="full"
+        color="secondary"
+        (click)="redirectToCourseTasks(course.materia_id)"
+      >
+        <ion-icon slot="start" name="clipboard"></ion-icon>
+        Tareas
+      </ion-button>
+      <ion-button
+        expand="full"
+        color="warning"
+        (click)="redirectToCourseResources(course.materia_id)"
+      >
+        <ion-icon slot="start" name="folder"></ion-icon>
+        Recursos
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
