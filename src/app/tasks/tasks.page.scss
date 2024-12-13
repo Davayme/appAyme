@@ -1,22 +1,46 @@
-/* filepath: /C:/Users/davay/Documents/Proyectos Angular/appAyme/src/app/tasks/tasks.page.scss */
-.task-item {
-  --ion-item-background: transparent;
-  --ion-item-border-color: transparent;
-}
-
+/* filepath: /c:/Users/davay/Documents/Proyectos Angular/appAyme/src/app/tasks/tasks.page.scss */
 .task-card {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto 20px;
+  margin: 16px;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.task-card ion-card-header {
-  text-align: center;
+ion-card-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
 }
 
-.task-card ion-card-content {
+ion-card-title ion-icon {
+  margin-right: 8px;
+}
+
+ion-card-content p {
+  font-size: 1em;
+  margin: 8px 0;
+}
+
+ion-button {
+  margin-top: 8px;
+}
+
+.no-tasks-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: #8c8c8c;
+}
+
+.no-tasks-icon {
+  font-size: 48px;
+  color: #8c8c8c;
+  margin-bottom: 16px;
+}
+
+.no-tasks-message {
+  font-size: 18px;
+  color: #8c8c8c;
 }

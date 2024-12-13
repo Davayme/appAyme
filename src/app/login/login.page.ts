@@ -24,11 +24,9 @@ export class LoginPage {
         const { uid, email } = userCredential.user;
         this.userManagementSrv.getUser({ uid, email }).subscribe((user) => {
           localStorage.setItem('user', JSON.stringify(user));
+          this.router.navigate(['/home']);
         });
-        this.router.navigate(['/home']);
       }
-
-      await this.firebaseService.saveUserEmail(this.user.email);
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
     }

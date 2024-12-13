@@ -12,6 +12,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthGuard } from './guards/auth.guard';
+import { RedirectGuard } from './guards/redirect.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +29,7 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot()
     
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AuthGuard, RedirectGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

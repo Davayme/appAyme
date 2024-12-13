@@ -12,12 +12,18 @@
 <ion-content>
   <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()" class="upload-form">
     <ion-item>
-      <ion-label position="stacked">Nombre de la Tarea</ion-label>
+      <ion-label position="stacked">
+        <ion-icon name="document-text-outline" slot="start"></ion-icon>
+        Nombre de la Tarea
+      </ion-label>
       <ion-input formControlName="nombre" readonly></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Subir Archivos</ion-label>
+      <ion-label position="stacked">
+        <ion-icon name="cloud-upload-outline" slot="start"></ion-icon>
+        Subir Archivos
+      </ion-label>
       <input type="file" (change)="onFileSelected($event)" />
     </ion-item>
     <ion-note color="danger" *ngIf="!file && uploadForm.get('file')?.touched">
@@ -25,10 +31,16 @@
     </ion-note>
 
     <ion-item *ngIf="file">
-      <ion-label>Archivo Subido:</ion-label>
+      <ion-label>
+        <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+        Archivo Subido:
+      </ion-label>
       <ion-text>{{ file.name }}</ion-text>
     </ion-item>
 
-    <ion-button expand="full" type="submit" [disabled]="!file" class="submit-button">Enviar</ion-button>
+    <ion-button expand="full" type="submit" [disabled]="!file" class="submit-button">
+      <ion-icon name="send-outline" slot="start"></ion-icon>
+      Enviar
+    </ion-button>
   </form>
 </ion-content>

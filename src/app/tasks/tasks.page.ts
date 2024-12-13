@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import Push from 'push.js';
 import { AddTaskTeacherComponent } from './add-task-teacher/add-task-teacher.component';
 import { Tasks } from '../models/ITasks';
@@ -15,11 +15,12 @@ export class TasksPage implements OnInit {
   tasks: Tasks[] = [];
   courseId!: string;
   uid!: string;
+  hasActiveTasks: boolean = false;
+  hasOverdueTasks: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private modalController: ModalController,
-    private toastController: ToastController,
     private taskService: TaskserviceService
   ) {}
 
@@ -32,37 +33,46 @@ export class TasksPage implements OnInit {
   }
 
   loadTasks() {
-    this.taskService.getTasks(this.courseId, this.uid).subscribe(
-      (tasks :any) => {
+    this.taskService.getTasks(this.courseId, this.uid).subscribe({
+      next: (tasks: any) => {
         this.tasks = tasks;
+        this.hasActiveTasks = this.tasks.some(task => task.tarea_estudiantes[0]?.estado);
+        this.hasOverdueTasks = this.tasks.some(task => !task.tarea_estudiantes[0]?.estado);
+
+        // Enviar notificaciones para tareas pendientes y atrasadas
+        this.sendTaskNotifications();
       },
-      (error : any) => {
+      error: (error: any) => {
         console.error('Error al cargar las tareas:', error);
       }
-    );
+    });
   }
 
-  async openAddTaskModal(task: Tasks) {
-    const modal = await this.modalController.create({
-      component: AddTaskTeacherComponent,
-      componentProps: { task }
-    });
-
-    modal.onDidDismiss().then((result) => {
-      if (result.data) {
-        this.presentNotification('Archivo subido exitosamente');
+  sendTaskNotifications() {
+    this.tasks.forEach(task => {
+      if (!task.tarea_estudiantes[0]?.estado) {
+        this.sendNotification(`Tarea pendiente: ${task.nombre}`, 'Tienes una tarea pendiente.');
+      } else {
+        this.sendNotification(`Tarea atrasada: ${task.nombre}`, 'Tienes una tarea atrasada.');
       }
     });
-
-    return await modal.present();
   }
 
+  sendNotification(title: string, message: string) {
+    Push.create(title, {
+      body: message,
+      icon: '/assets/icon/task-icon.png',
+      timeout: 10000,
+      onClick: function () {
+        window.focus();
+      }
+    });
+  }
 
   requestNotificationPermission() {
     Push.Permission.request(
       () => {
         console.log('Permiso de notificación concedido');
-        this.sendReminderNotification();
       },
       () => {
         console.log('Permiso de notificación denegado');
@@ -82,13 +92,27 @@ export class TasksPage implements OnInit {
   }
 
   presentNotification(message: string) {
-    const notification = Push.create('Notificación', {
+    Push.create('Notificación', {
       body: message,
       timeout: 9000,
       onClick: function () {
         window.focus();
-     
       }
     });
+  }
+
+  async openAddTaskModal(task: Tasks) {
+    const modal = await this.modalController.create({
+      component: AddTaskTeacherComponent,
+      componentProps: { task }
+    });
+
+    modal.onDidDismiss().then((result) => {
+      if (result.data) {
+        this.presentNotification('Archivo subido exitosamente');
+      }
+    });
+
+    return await modal.present();
   }
 }

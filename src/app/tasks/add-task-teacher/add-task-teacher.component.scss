@@ -1,16 +1,26 @@
 /* filepath: /C:/Users/davay/Documents/Proyectos Angular/appAyme/src/app/tasks/add-task-teacher/add-task-teacher.component.scss */
 .upload-form {
-    padding: 16px;
-  }
-  
-  ion-item {
-    --padding-start: 0;
-    --inner-padding-end: 0;
-    --inner-padding-start: 0;
-    --padding-end: 0;
-    margin-bottom: 16px;
-  }
-  
-  .submit-button {
-    margin-top: 24px;
-  }
+  padding: 16px;
+}
+
+ion-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  --inner-padding-start: 0;
+  --padding-end: 0;
+  margin-bottom: 16px;
+}
+
+ion-label {
+  display: flex;
+  align-items: center;
+  font-size: 1.1em;
+}
+
+ion-label ion-icon {
+  margin-right: 8px;
+}
+
+.submit-button {
+  margin-top: 24px;
+}

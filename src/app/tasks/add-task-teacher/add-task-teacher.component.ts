@@ -36,7 +36,7 @@ export class AddTaskTeacherComponent implements OnInit {
 
   async onSubmit() {
     if (this.uploadForm.valid) {
-      this.presentToast('Archivo subido exitosamente');
+      this.presentToast('Tarea enviada exitosamente');
       this.dismissModal();
     }
   }
